@@ -1,0 +1,75 @@
+mysql> CREATE DATABASE BOOKSTORE;
+Query OK, 1 row affected (2.16 sec)
+
+mysql> USE BOOKSTORE
+Database changed
+mysql> CREATE TABLE Books(
+    -> Book_id int PRIMARY KEY,
+    -> Title varchar(30),
+    -> Author varchar(30),
+    -> Price int,
+    -> Publication_date DATE);
+Query OK, 0 rows affected (2.39 sec)
+
+mysql> INSERT INTO Books VALUES(
+    -> 1,'Book1','Aut1',200,'2000-01-01'),
+    -> (2,'Book2','Aut1',250,'2020-03-03'),
+    -> (3,'Book3','Aut2',3000,'1999-09-04');
+Query OK, 3 rows affected (0.80 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM Books;
++---------+-------+--------+-------+------------------+
+| Book_id | Title | Author | Price | Publication_date |
++---------+-------+--------+-------+------------------+
+|       1 | Book1 | Aut1   |   200 | 2000-01-01       |
+|       2 | Book2 | Aut1   |   250 | 2020-03-03       |
+|       3 | Book3 | Aut2   |  3000 | 1999-09-04       |
++---------+-------+--------+-------+------------------+
+3 rows in set (0.04 sec)
+
+mysql> ALTER TABLE Books MODIFY COLUMN Price float;
+Query OK, 3 rows affected (4.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT Title,Author FROM Books;
++-------+--------+
+| Title | Author |
++-------+--------+
+| Book1 | Aut1   |
+| Book2 | Aut1   |
+| Book3 | Aut2   |
++-------+--------+
+3 rows in set (0.33 sec)
+
+mysql> SELECT *FROM Books WHERE Book_id=2;
++---------+-------+--------+-------+------------------+
+| Book_id | Title | Author | Price | Publication_date |
++---------+-------+--------+-------+------------------+
+|       2 | Book2 | Aut1   |   250 | 2020-03-03       |
++---------+-------+--------+-------+------------------+
+1 row in set (0.06 sec)
+
+mysql> UPDATE Books SET Price = 19.99 WHERE Book_id=1;
+Query OK, 1 row affected (0.34 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *FROM Books WHERE Book_id=1;
++---------+-------+--------+-------+------------------+
+| Book_id | Title | Author | Price | Publication_date |
++---------+-------+--------+-------+------------------+
+|       1 | Book1 | Aut1   | 19.99 | 2000-01-01       |
++---------+-------+--------+-------+------------------+
+1 row in set (0.03 sec)
+
+mysql> DELETE FROM Books WHERE Book_id=3;
+Query OK, 1 row affected (0.16 sec)
+
+mysql> SELECT *FROM Books;
++---------+-------+--------+-------+------------------+
+| Book_id | Title | Author | Price | Publication_date |
++---------+-------+--------+-------+------------------+
+|       1 | Book1 | Aut1   | 19.99 | 2000-01-01       |
+|       2 | Book2 | Aut1   |   250 | 2020-03-03       |
++---------+-------+--------+-------+------------------+
+2 rows in set (0.00 sec)
